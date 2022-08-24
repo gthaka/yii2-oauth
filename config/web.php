@@ -84,6 +84,13 @@ $config = [
             'enableOpenIdConnect' => true, // Only required if OpenID Connect support is required
         ],
     ],
+    'controllerMap' => [
+        'migrate' => [
+            'migrationNamespaces' => [
+                'app\\migrations\\oauth2', // Add the `Oauth2Module::$migrationsNamespace` to your Migration Controller
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
