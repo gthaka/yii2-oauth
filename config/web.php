@@ -1,6 +1,7 @@
 <?php
 
 use rhertogh\Yii2Oauth2Server\Oauth2Module;
+use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -25,14 +26,17 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'class' => Da\User\Module::class,
+            // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
+            // 'administrators' => ['admin'], // this is required for accessing administrative actions
+            // 'generatePasswords' => true,
+            // 'switchIdentitySessionKey' => 'myown_usuario_admin_user_key',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
+            'class' => Mailer::class,
             'viewPath' => '@app/mail',
             // send all mails to a file by default.
             'useFileTransport' => true,
@@ -82,13 +86,6 @@ $config = [
             ],
             'migrationsNamespace' => 'app\\migrations\\oauth2', // The namespace with which migrations will be created (and by which they will be located).
             'enableOpenIdConnect' => true, // Only required if OpenID Connect support is required
-        ],
-    ],
-    'controllerMap' => [
-        'migrate' => [
-            'migrationNamespaces' => [
-                'app\\migrations\\oauth2', // Add the `Oauth2Module::$migrationsNamespace` to your Migration Controller
-            ],
         ],
     ],
 ];
