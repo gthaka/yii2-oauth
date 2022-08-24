@@ -22,15 +22,11 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'atzMTLMwAw9QbMbEqYhb5e_zYk6-SFlz',
         ],
+        'authManager' => [
+            'class' => 'Da\User\Component\AuthDbManagerComponent',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'user' => [
-            'class' => Da\User\Module::class,
-            // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
-            // 'administrators' => ['admin'], // this is required for accessing administrative actions
-            // 'generatePasswords' => true,
-            // 'switchIdentitySessionKey' => 'myown_usuario_admin_user_key',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -57,9 +53,25 @@ $config = [
             'rules' => [
             ],
         ],
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'basePath' => '@app/messages',
+                    'sourceLanguage' => 'en-US',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
     'modules' => [
+        'user' => [
+            'class' => Da\User\Module::class,
+            // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
+            // 'administrators' => ['admin'], // this is required for accessing administrative actions
+            // 'generatePasswords' => true,
+            // 'switchIdentitySessionKey' => 'myown_usuario_admin_user_key',
+        ],
         'oauth2' => [
             'class' => rhertogh\Yii2Oauth2Server\Oauth2Module::class,
             'identityClass' => app\models\User::class, // The Identity Class of your application (most likely the same as the 'identityClass' of your application's User Component)
