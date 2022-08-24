@@ -59,14 +59,14 @@ $config = [
         'oauth2' => [
             'class' => rhertogh\Yii2Oauth2Server\Oauth2Module::class,
             'identityClass' => app\models\User::class, // The Identity Class of your application (most likely the same as the 'identityClass' of your application's User Component)
-            'privateKey' => getenv('PRIVATE_KEY_PATH'), // Path to the private key generated in step 1. Warning: make sure the path is outside the web-root.
-            'publicKey' => getenv('PUBLIC_KEY_PATH'), // Path to the public key generated in step 1.
-            'privateKeyPassphrase' => getenv('YII2_OAUTH2_SERVER_PRIVATE_KEY_PASSPHRASE'), // The private key passphrase (if used in step 1).
-            'codesEncryptionKey' => getenv('YII2_OAUTH2_SERVER_CODES_ENCRYPTION_KEY'), // The encryption key generated in step 2.
+            'privateKey' => $_ENV['PRIVATE_KEY_PATH'], // Path to the private key generated in step 1. Warning: make sure the path is outside the web-root.
+            'publicKey' => $_ENV['PUBLIC_KEY_PATH'], // Path to the public key generated in step 1.
+            'privateKeyPassphrase' => $_ENV['YII2_OAUTH2_SERVER_PRIVATE_KEY_PASSPHRASE'], // The private key passphrase (if used in step 1).
+            'codesEncryptionKey' => $_ENV['YII2_OAUTH2_SERVER_CODES_ENCRYPTION_KEY'], // The encryption key generated in step 2.
             'storageEncryptionKeys' => [ // For ease of use this can also be a JSON encoded string.
                 // The index represents the name of the key, this can be anything you like.
                 // However, for keeping track of different keys using (or prefixing it with) a date is advisable.
-                '2021-01-01' => getenv('YII2_OAUTH2_SERVER_STORAGE_ENCRYPTION_KEY'), // The encryption key generated in step 2.
+                '2021-01-01' => $_ENV['YII2_OAUTH2_SERVER_STORAGE_ENCRYPTION_KEY'], // The encryption key generated in step 2.
             ],
             'defaultStorageEncryptionKey' => '2021-01-01', // The index of the default key in storageEncryptionKeys
             'grantTypes' => [ // For more information which grant types to use, please see https://oauth2.thephpleague.com/authorization-server/which-grant/
