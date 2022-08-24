@@ -65,6 +65,9 @@ $config = [
     ],
     'params' => $params,
     'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\Module',
+        ],
         'user' => [
             'class' => Da\User\Module::class,
             // ...other configs from here: [Configuration Options](installation/configuration-options.md), e.g.
