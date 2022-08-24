@@ -2,8 +2,14 @@
 
 namespace app\models;
 
-class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
+use rhertogh\Yii2Oauth2Server\interfaces\models\external\user\Oauth2UserInterface;
+use rhertogh\Yii2Oauth2Server\models\traits\Oauth2UserIdentifierTrait;
+
+class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface, Oauth2UserInterface
 {
+
+    use Oauth2UserIdentifierTrait;
+
     public $id;
     public $username;
     public $password;
@@ -100,5 +106,17 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+
+    public static function getTableSchema()
+    {
+        // TODO: Implement getTableSchema() method.
+        return '';
+    }
+
+    public function getIdentifier()
+    {
+        // TODO: Implement getIdentifier() method.
+        return 'id';
     }
 }
