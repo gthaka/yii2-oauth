@@ -31,6 +31,13 @@ $config = [
             ],
         ],
         'db' => $db,
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 
@@ -45,6 +52,12 @@ $config = [
                 'Da\User\Migration',
                 'app\migrations\oauth2', // Add the `Oauth2Module::$migrationsNamespace` to your Migration Controller
             ],
+        ],
+    ],
+    'modules' => [
+        'user' => [
+            'class' => Da\User\Module::class,
+            'administrators' => ['admin']
         ],
     ],
 ];
