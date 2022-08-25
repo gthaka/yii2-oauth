@@ -24,4 +24,14 @@ class User extends \Da\User\Model\User implements Oauth2UserInterface
     {
         return 'id';
     }
+    // ...
+    # region Oauth2OidcUserInterface
+    /**
+     * @inheritDoc
+     */
+    public function getLatestAuthenticatedAt()
+    {
+        return new \DateTimeImmutable('@' . ($this->latest_authenticated_at ?? $this->created_at));
+    }
+
 }
