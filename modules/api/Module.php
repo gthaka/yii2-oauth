@@ -2,6 +2,8 @@
 
 namespace app\modules\api;
 
+use Yii;
+
 /**
  * api module definition class
  */
@@ -19,6 +21,8 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+        // Only allow "stateless" access to the api, for more information see
+        // https://www.yiiframework.com/doc/guide/2.0/en/rest-authentication#authentication.
+        Yii::$app->user->enableSession = false;
     }
 }
